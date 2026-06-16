@@ -1,5 +1,10 @@
 # Step 2 - Chatbot
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-02-chatbot` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-00-your-solution/src step-02-chatbot/src`
+
 The next step is to build a chatbot.
 This can simply be done by creating a new interface and adding the right annotations
 from [Quarkus LangChain4j](https://docs.quarkiverse.io/quarkus-langchain4j/dev/quickstart.html#ai-service).

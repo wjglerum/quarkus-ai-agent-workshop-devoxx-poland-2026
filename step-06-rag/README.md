@@ -1,5 +1,10 @@
 # Step 6 - Retrieval-Augmented Generation (RAG)
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-06-rag` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-05-mcp-server/src step-06-rag/src`
+
 We’ll ingest one or more docs into a local knowledge base and let the bot answer
 questions **grounded on those docs**. For this workshop, we’ll use a playful resource:
 

@@ -10,7 +10,7 @@ A hands-on conference workshop for building a secure AI agent with Quarkus and L
 
 The numbered modules are not arbitrary packages, they are a teaching progression:
 
-- `step-00-your-solution` is the participant's **working module**. It ships a minimal starter (`ChatBot` AI service only) and is where workshop attendees write their own code.
+- `step-00-your-solution` is the participant's **working module**. It ships a minimal starter (an empty `ChatBot` placeholder interface that participants complete in step-02, plus the provider config) and is where workshop attendees write their own code. Its README is a linear guide that points at each step's README and explains the cumulative model.
 - `step-01-introduction` through `step-08-testing` are **cumulative reference solutions**. Each step is the full solution up to and including that topic: `step-02` = chatbot, `step-03` = chatbot + auth, `step-04` = + tools, `step-05` = + MCP client, `step-06` = + RAG, `step-07` = + guardrails, `step-08` = + tests. To see the reference implementation for a given feature, open the module named after that feature, not the next one.
 - `step-bonus-01..03` are **documentation only** (README with links, no code) and are intentionally excluded from the root `pom.xml` and the CI matrix.
 

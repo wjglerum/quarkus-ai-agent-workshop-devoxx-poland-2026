@@ -1,5 +1,10 @@
 # Step 3 - Authentication
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-03-authentication` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-02-chatbot/src step-03-authentication/src`
+
 Now that we have a chatbot, we need to add authentication to it to protect it from unauthorized users.
 We will leverage the Quarkus OIDC extension to do that.
 If you want to learn more about OIDC, you can check

@@ -1,5 +1,10 @@
 # Step 7 - Guardrails
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-07-guardrails` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-06-rag/src step-07-guardrails/src`
+
 Guardrails are a set of rules that are applied to your large language model. It can define a set of rules for the input and
 output of your model.
 For the full docs check out the [documentation](https://docs.langchain4j.dev/tutorials/guardrails/).

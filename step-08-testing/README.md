@@ -1,5 +1,10 @@
 # Step 8 - Testing LLM Application Guardrails
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-08-testing` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-07-guardrails/src step-08-testing/src`
+
 In this step you’ll unit test your input/output guardrails using the `langchain4j-test` AssertJ helpers.
 These tests run in milliseconds and don’t call an LLM, which is perfect for CI.
 

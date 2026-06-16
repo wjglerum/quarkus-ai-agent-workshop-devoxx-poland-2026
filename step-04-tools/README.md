@@ -1,5 +1,10 @@
 # Step 4 - Tools
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-04-tools` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-03-authentication/src step-04-tools/src`
+
 AI agents can leverage tools to help them perform their tasks.
 Instead of hardcoding the workflow, the language model can decide when and how to use a tool.
 Check the [documentation](https://docs.quarkiverse.io/quarkus-langchain4j/dev/function-calling.html) on function

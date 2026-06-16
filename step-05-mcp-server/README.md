@@ -1,5 +1,10 @@
 # Step 5 - MCP Server
 
+> [!NOTE]
+> You build this in your `step-00-your-solution` workspace, not in this folder. The steps are cumulative, so apply the changes below on top of what you built in the previous step. This `step-05-mcp-server` folder is the finished reference for this step, so compare against it if you get stuck.
+>
+> To see only what this step adds, run this from the repository root: `diff -ru step-04-tools/src step-05-mcp-server/src`
+
 Now that we know how we can use external tools we can now move on to MCP servers.
 MCP servers are a way to create a tool that any language model can use.
 For enterprise usage we can imagine setting up a dedicated MCP server for an external tool.
