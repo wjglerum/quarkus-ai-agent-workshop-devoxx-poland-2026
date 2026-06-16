@@ -198,6 +198,32 @@ quarkus.langchain4j.ai.gemini.chat-model.model-id=gemini-2.5-flash
 For the details of the configuration please refer to
 the [documentation](https://docs.quarkiverse.io/quarkus-langchain4j/dev/gemini-chat-model.html).
 
+### Quarkus LangChain4j Anthropic
+
+To use Anthropic's Claude models with Quarkus you have to add the following dependency to your project:
+
+> [!NOTE]
+> You have to set the `ANTHROPIC_API_KEY` environment variable to use Anthropic.
+
+```xml
+
+<dependency>
+    <groupId>io.quarkiverse.langchain4j</groupId>
+    <artifactId>quarkus-langchain4j-anthropic</artifactId>
+</dependency>
+```
+
+And set the following configuration:
+
+```properties
+quarkus.langchain4j.chat-model.provider=anthropic
+quarkus.langchain4j.anthropic.api-key=${ANTHROPIC_API_KEY}
+quarkus.langchain4j.anthropic.chat-model.model-name=claude-opus-4-8
+```
+
+For the details of the configuration please refer to
+the [documentation](https://docs.quarkiverse.io/quarkus-langchain4j/dev/anthropic-chat-model.html).
+
 ## Next step
 
 Feel free to explore the rest of the project, and afterwards continue with the

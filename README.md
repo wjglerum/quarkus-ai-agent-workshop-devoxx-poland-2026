@@ -47,6 +47,7 @@ You can either use a local model or one of the other providers that you have acc
 - [Ollama](#ollama)
 - [OpenAI](#openai)
 - [Gemini](#gemini)
+- [Anthropic](#anthropic)
 
 ### Ollama
 
@@ -110,6 +111,27 @@ Next you can run the following command to export the API key:
 ```shell
 export GEMINI_API_KEY=<YOUR_API_KEY_HERE>
 ```
+
+### Anthropic
+
+> [!NOTE]
+> You can also use Anthropic's Claude models. This requires a paid account with credits.
+> Some costs apply, but this workshop should only cost you a few cents/dollars.
+> This is not required for the workshop, but feel free to explore.
+
+You can generate an API key on the [Anthropic Console](https://console.anthropic.com/settings/keys).
+Next you can run the following command to export the API key:
+
+```shell
+export ANTHROPIC_API_KEY=<YOUR_API_KEY_HERE>
+```
+
+> [!WARNING]
+> Make sure to keep the API key secret.
+> You are responsible for the costs yourself.
+
+The default configuration uses `claude-opus-4-8`, Anthropic's most capable model.
+For a cheaper, faster option you can switch the model to `claude-haiku-4-5` in the configuration.
 
 ## Getting started
 
