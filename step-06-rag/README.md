@@ -61,7 +61,7 @@ Inside of `src/main/resources/application.properties`, add the following:
 quarkus.langchain4j.easy-rag.path=src/main/resources/rag
 quarkus.langchain4j.easy-rag.max-segment-size=100
 quarkus.langchain4j.easy-rag.max-overlap-size=25
-quarkus.langchain4j.easy-rag.max-results=15
+quarkus.langchain4j.easy-rag.max-results=30
 # Use the local ONNX embedding model
 quarkus.langchain4j.embedding-model.provider=dev.langchain4j.model.embedding.onnx.bgesmallenq.BgeSmallEnQuantizedEmbeddingModel
 ```
