@@ -26,5 +26,7 @@ public class ChatBotWebSocket {
     }
 
     @OnTextMessage
-    public String onTextMessage(String message) { return chatBot.chat(message); }
+    public String onTextMessage(String message) {
+        return chatBot.chat(message);
+    }
 }

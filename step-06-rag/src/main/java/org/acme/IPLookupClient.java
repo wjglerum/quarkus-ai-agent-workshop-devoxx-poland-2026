@@ -10,6 +10,6 @@ public interface IPLookupClient {
 
     @GET
     @Path("/json")
-    @Tool("Get location based on publicIP")
+    @Tool("Get location based on public IP")
     String getLocation();
 }
