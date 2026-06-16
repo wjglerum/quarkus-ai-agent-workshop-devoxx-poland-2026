@@ -9,7 +9,7 @@ https://docs.quarkiverse.io/quarkus-langchain4j/dev/guardrails.html
 
 
 > [!NOTE]
-> Ideally, we want to follow the single responsibility principle, so hahve each guardrail class validate a single rule.
+> Ideally, we want to follow the single responsibility principle, so have each guardrail class validate a single rule.
 > Then, we chain them together to guard our model.
 > The order matters here - the first guardrail to fail will stop the chain and return the result.
 > So, prioritize the guardrails that are most likely to fail.
@@ -58,7 +58,9 @@ Let's create a new package `org.acme.guardrails` and add a new class `MaxLength`
 
 
 ### 1) Guardrail Implementation
-Let's configure ...
+
+Here is a more complete version that reads the limit from configuration and counts Unicode code points,
+so emoji and other multi-byte characters are counted correctly:
 
 ```java
 package org.acme.guardrails;
@@ -110,7 +112,7 @@ You can also use output guardrails to process the output of your model.
 Similarly to the input guardrail, let's create a new class `AllowedLocationsGuardrail` in the `org.acme.guardrails` package.
 This guardrail will process output and ensure our chatbot refers to our City Guide from the previous step.
 
-Here is the list of lication from the City Guide that we want to allow:
+Here is the list of locations from the City Guide that we want to allow:
 
 ```
 guardrails.locations.allowed=Markthal,Fenix Food Factory,Dudok,Man Met Bril Koffie,Hopper Coffee,Giraffe Coffee Roasters,Caffenation,Normo,Kolonel Koffie,PAKT Food Courtyard,Frituur near Groenplaats,Le Pain Quotidien

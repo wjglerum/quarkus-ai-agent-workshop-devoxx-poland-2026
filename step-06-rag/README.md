@@ -117,7 +117,7 @@ Boot up the app:
     - “What are good restaurants in Rotterdam?” — It should answer and cite the guide (e.g., “Fenix Food Factory”).
     - “Give me a recommendation for a coffee place in Antwerp” — (e.g., “Normo”).
 
-Here is an example of how a model replut might look like:
+Here is an example of how a model reply might look like:
 
 ![img.png](./../docs/images/chatbot-recommendation.png)
 
