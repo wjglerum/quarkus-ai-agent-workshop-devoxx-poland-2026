@@ -7,7 +7,7 @@ This is **your personal workspace** for the workshop.
 
 Each numbered step in the repository (`step-01-introduction`, `step-02-chatbot`, etc.) contains explanations, hints, and reference implementations.  
 You can open those for guidance — but **you don’t need to switch modules**.  
-Everything you develop should live right here in `step-00-setup`.
+Everything you develop should live right here in `step-00-your-solution`.
 
 ---
 
