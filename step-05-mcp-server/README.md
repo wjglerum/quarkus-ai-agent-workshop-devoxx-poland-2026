@@ -15,6 +15,13 @@ the [Quarkus MCP Server extension](https://docs.quarkiverse.io/quarkus-mcp-serve
 Now that we know our location we can use it to get the weather forecast.
 Instead of creating a tool directly we are going to create an MCP server.
 
+> [!NOTE]
+> A complete reference for this MCP server lives in the `weather-mcp-server` module at the root of this repository.
+> The steps below build the simple version that calls the public Open-Meteo API directly.
+> The reference module goes a bit further and also demonstrates the optional token propagation pattern described at
+> the end of this step (a secured internal `/weather` resource called through a second REST client with `@AccessToken`).
+> You can ignore that extra part if you just want the basics working.
+
 ### Quarkus project
 
 1. Start by creating a new Quarkus project.
@@ -138,7 +145,9 @@ to propagate the token to the weather client.
 ```
 
 And annotate the weather client with the `@AccessToken`, see https://quarkus.io/guides/security-openid-connect-client
-For our use case that is not needed right now.
+For the simple version we build here this is not needed, since Open-Meteo is a public API.
+The `weather-mcp-server` reference module shows this pattern in action: it exposes a secured internal `/weather` resource
+and calls it through a `WeatherClientInternal` annotated with `@AccessToken`, which propagates the user's token.
 
 ### MCP Client
 
