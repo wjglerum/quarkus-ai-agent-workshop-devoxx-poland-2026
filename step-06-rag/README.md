@@ -127,9 +127,9 @@ Unfortunately, smaller models are not great at following such instructions, espe
 longer,
 which is the case with RAG.
 
-> [!NOTE] Model choice will affect the quality of the answers. If you use a small model (e.g., `llama3.2`), the bot may
-> not be able to answer all questions correctly. For better results, consider using a more capable model like `gpt-4o`
-> from OpenAI.
+> [!NOTE] Model choice will affect the quality of the answers. If you use a small model (e.g., `qwen3.5:0.8b`), the bot
+> may not be able to answer all questions correctly. For better results, consider a larger Qwen3.5 tag (e.g. `qwen3.5:2b`
+> or `qwen3.5:4b`) or a more capable model like `gpt-4o` from OpenAI.
 
 
 > [!NOTE]

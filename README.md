@@ -53,22 +53,25 @@ You can either use a local model or one of the other providers that you have acc
 Ollama is a free tool that can be used to run models locally.
 You can explore some popular models from Ollama, there are a lot of great free models available:
 
-- [llama3.2](https://ollama.com/library/llama3.2) (small model)
-- [qwen2.5](https://ollama.com/library/qwen2.5) (small model)
-- [qwen2.5-coder](https://ollama.com/library/qwen2.5-coder) (great for coding)
-- [gemma3](https://ollama.com/library/gemma3) (CPU only model)
-- [deepseek-r1](https://ollama.com/library/deepseek-r1) (popular model)
-- [gpt-oss](https://ollama.com/library/gpt-oss) (open-weight language model from OpenAI)
+- [qwen3.5](https://ollama.com/library/qwen3.5) (small, recent, native tool calling)
+- [gpt-oss](https://ollama.com/library/gpt-oss) (open-weight model from OpenAI, strong tool calling, great for agents)
+- [deepseek-r1](https://ollama.com/library/deepseek-r1) (reasoning model; note it is weaker at the tool-calling steps)
+- [qwen3.6](https://ollama.com/library/qwen3.6) (best quality, but large: smallest tag is 27b at ~17 GB, so only if you have the hardware)
 
-We will use `llama3.2` for now.
+We will use `qwen3.5:0.8b` for now.
+It is small (about 1 GB to download), fast, and supports native tool calling, which we rely on later for the tools and MCP steps.
 Feel free to experiment with other models too, do watch the download size though!
 Larger models will take longer to download, so you might want to use a smaller model for the workshop.
 Also to run large models you will need to have plenty of free disk space and memory available.
 
+> [!NOTE]
+> Later steps use function calling (tools) and MCP, so pick a model with tool support.
+> Some otherwise small models, such as `gemma3`, do not support tools and will not work for those steps.
+
 You can start a model directly from the app or from the command line:
 
 ```shell
-ollama run llama3.2
+ollama run qwen3.5:0.8b
 ```
 
 > [!NOTE]

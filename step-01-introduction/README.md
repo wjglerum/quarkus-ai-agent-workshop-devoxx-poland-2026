@@ -69,7 +69,7 @@ Example output:
 - url: http://localhost:34941/api/chat
 - headers: [Content-Type: application/json]
 - body: {
-  "model" : "llama3.2",
+  "model" : "qwen3.5:0.8b",
   "messages" : [ {
     "role" : "user",
     "content" : "Hi!"
@@ -88,7 +88,7 @@ Example output:
 - status code: 200
 - headers: [Content-Length: 330], [Content-Type: application/json; charset=utf-8], [Date: Sat, 30 Aug 2025 12:04:38 GMT]
 - body: {
-  "model": "llama3.2",
+  "model": "qwen3.5:0.8b",
   "created_at": "2025-08-30T12:04:38.601433113Z",
   "message": {
     "role": "assistant",
@@ -142,7 +142,7 @@ Or instead use Ollama with OpenAI compatibility:
 ```properties
 quarkus.langchain4j.chat-model.provider=openai
 quarkus.langchain4j.openai.base-url=http://localhost:11434/v1/
-quarkus.langchain4j.openai.chat-model.model-name=llama3.2
+quarkus.langchain4j.openai.chat-model.model-name=qwen3.5:0.8b
 ```
 
 For the details of the configuration please refer to
@@ -164,12 +164,12 @@ And set the following configuration:
 
 ```properties
 quarkus.langchain4j.chat-model.provider=ollama
-quarkus.langchain4j.ollama.chat-model.model-id=llama3.2
+quarkus.langchain4j.ollama.chat-model.model-id=qwen3.5:0.8b
 ```
 
 For running Ollama you have two options:
 
-- Run it yourself with `ollama run llama3.2` as we saw before
+- Run it yourself with `ollama run qwen3.5:0.8b` as we saw before
 - Or let Quarkus run it for you automatically with devservices
 
 For the details of the configuration please refer to
