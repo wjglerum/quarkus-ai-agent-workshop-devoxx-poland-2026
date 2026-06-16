@@ -9,6 +9,7 @@ import io.quarkiverse.langchain4j.mcp.runtime.McpToolBox;
 import jakarta.enterprise.context.SessionScoped;
 import org.acme.guardrails.AllowedLocationsGuardrail;
 import org.acme.guardrails.MaxLength;
+import org.acme.guardrails.PromptInjectionGuard;
 
 @SessionScoped
 @RegisterAiService
@@ -19,7 +20,7 @@ public interface ChatBot {
                 You can get their location and extract the latitude and longitude.
                 You use provided information to you about Antwerp and Rotterdam.
             """)
-    @InputGuardrails({MaxLength.class})
+    @InputGuardrails({MaxLength.class, PromptInjectionGuard.class})
     @OutputGuardrails({ AllowedLocationsGuardrail.class })
     @ToolBox(IPLookupClient.class)
     @McpToolBox("weather")
