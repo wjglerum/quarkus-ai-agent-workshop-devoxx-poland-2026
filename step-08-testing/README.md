@@ -32,6 +32,39 @@ Files under test
 
 Test file — `src/test/java/org/acme/guardrails/AllowedLocationsGuardrailTest.java`
 
+```java
+package org.acme.guardrails;
+
+import org.junit.jupiter.api.Test;
+
+import static dev.langchain4j.data.message.AiMessage.*;
+import static dev.langchain4j.test.guardrail.GuardrailAssertions.assertThat;
+
+class AllowedLocationsGuardrailTest {
+
+    @Test
+    void passesWhenContainsAllowed() {
+        var rail = new AllowedLocationsGuardrail();
+        rail.allowedCsv = "Markthal,Fenix Food Factory";
+        var res = rail.validate(from("Grab lunch at Markthal."));
+        assertThat(res).isSuccessful();
+    }
+
+    @Test
+    void repromptsWhenNoAllowedMentioned() {
+        var rail = new AllowedLocationsGuardrail();
+        rail.allowedCsv = "Markthal,Fenix Food Factory";
+
+        var res = rail.validate(from("Plenty of options downtown."));
+
+        assertThat(res)
+                .hasSingleFailureWithMessageAndReprompt(
+                        "Answer must include an approved location",
+                        "Please include at least one of: Markthal,Fenix Food Factory.");
+    }
+}
+```
+
 > [!NOTE]
 > Tip: we set `rail.allowedCsv` directly to keep tests self-contained.
 > In the app, you normally put this in `application.properties`.
@@ -44,6 +77,58 @@ Files under test
 - Config key: `guardrails.max-input-chars` (default 1000)
 
 Test file — `src/test/java/org/acme/guardrails/MaxLengthTest.java`
+
+```java
+package org.acme.guardrails;
+
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.guardrail.GuardrailResult;
+import dev.langchain4j.guardrail.InputGuardrailResult;
+import org.junit.jupiter.api.Test;
+
+import static dev.langchain4j.test.guardrail.GuardrailAssertions.assertThat;
+
+class MaxLengthTest {
+
+    @Test
+    void underLimit_isSuccessful() {
+        MaxLength rail = new MaxLength();
+        rail.maxChars = 1000;
+
+        InputGuardrailResult res = rail.validate(UserMessage.from("a".repeat(1000)));
+        assertThat(res).isSuccessful();
+    }
+
+    @Test
+    void overLimit_isFatal_withClearMessage() {
+        MaxLength rail = new MaxLength();
+        rail.maxChars = 1000;
+
+        InputGuardrailResult res = rail.validate(UserMessage.from("a".repeat(1001)));
+        assertThat(res)
+                .hasResult(GuardrailResult.Result.FATAL)
+                .assertSingleFailureSatisfies(f ->
+                        org.assertj.core.api.Assertions.assertThat(f.message())
+                                .contains("Input too long")
+                                .contains("1001")
+                                .contains("1000")
+                );
+    }
+
+    @Test
+    void emoji_areCountedByCodePoint() {
+        MaxLength rail = new MaxLength();
+        rail.maxChars = 3;
+
+        // "A🙂B" == 3 code points; this is OK
+        assertThat(rail.validate(UserMessage.from("A🙂B"))).isSuccessful();
+
+        // "A🙂BC" == 4 code points; this exceeds the limit
+        assertThat(rail.validate(UserMessage.from("A🙂BC")))
+                .hasResult(GuardrailResult.Result.FATAL);
+    }
+}
+```
 
 > [!NOTE]
 > If your failure message differs, either update the guardrail message or loosen the assertion (e.g., .contains(...)).
