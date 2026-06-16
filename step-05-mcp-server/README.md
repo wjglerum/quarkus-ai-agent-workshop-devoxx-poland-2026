@@ -192,6 +192,15 @@ Next we also need another extension to automatically propagate the access token 
 This extension provides an instance of the `McpClientAuthProvider`,
 see https://docs.quarkiverse.io/quarkus-langchain4j/dev/mcp.html#_authorization
 
+### How the two apps trust each other
+
+For the propagated token to be accepted, the agent (8080) and the `weather-mcp-server` (8081) must trust the same token issuer. In dev mode this happens automatically: neither app sets `quarkus.oidc.auth-server-url`, so each one wants a Keycloak Dev Service. Quarkus does not start a second Keycloak if it finds an existing container labeled `quarkus-dev-service-keycloak` with a matching service name (default `quarkus`), so whichever app starts second reuses the first app's Keycloak. One Keycloak, one issuer, one set of users (`alice`, `bob`), so a token minted for the agent validates at the weather server.
+
+To verify it is shared: with both apps running, the second app's log shows a line like `Dev Services container found: ... (quay.io/keycloak/keycloak) Connecting to: ...`, and `docker ps` (or `podman ps`) shows a single Keycloak container.
+
+> [!IMPORTANT]
+> This shared Keycloak only exists in dev mode. In production there are no Dev Services, so you must point both applications at the same real Keycloak by setting the same `quarkus.oidc.auth-server-url`. Also keep the default Dev Service settings: do not disable container sharing and do not give the two apps different `quarkus.keycloak.devservices.service-name` values, or each one starts its own Keycloak and the propagated token is rejected with a 401.
+
 ### Run the AI agent
 
 Finally, you can run the AI agent and use the `weather` tool.

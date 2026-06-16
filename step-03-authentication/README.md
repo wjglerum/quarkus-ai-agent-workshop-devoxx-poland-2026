@@ -69,7 +69,7 @@ public class ChatBotWebSocket {
 ```
 
 Furthermore, we can also use the `@RolesAllowed` annotation to restrict access to certain endpoints based on roles.
-By default, both `alice` and `bob` have the role `user`, and `bob` additionally has the role `admin`, so `@RolesAllowed("user")` lets both of them in.
+By default, both `alice` and `bob` have the role `user`, and `alice` additionally has the role `admin`, so `@RolesAllowed("user")` lets both of them in.
 
 ```java
 import jakarta.annotation.security.RolesAllowed;

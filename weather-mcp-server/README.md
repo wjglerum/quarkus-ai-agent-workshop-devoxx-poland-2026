@@ -66,6 +66,8 @@ In `step-05-mcp-server` the AI agent acts as the MCP client of this server.
 The agent connects to `http://localhost:8081/mcp/sse` and propagates the signed-in user's token, which lets it call the `current_weather` tool exposed here.
 Both applications must run at the same time: this server on port 8081 and the agent on port 8080.
 
+The propagated token validates here because both apps share a single Keycloak Dev Service in dev mode, so they use the same issuer. See the "How the two apps trust each other" section in the step-05 README for how that works and what to configure in production.
+
 ## References
 
 - [Quarkus MCP Server](https://docs.quarkiverse.io/quarkus-mcp-server/dev/)
