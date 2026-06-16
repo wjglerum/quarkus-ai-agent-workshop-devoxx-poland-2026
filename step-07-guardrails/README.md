@@ -37,7 +37,6 @@ import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.guardrail.InputGuardrail;
 import dev.langchain4j.guardrail.InputGuardrailResult;
 import jakarta.enterprise.context.ApplicationScoped;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class MaxLength implements InputGuardrail {
@@ -46,7 +45,7 @@ public class MaxLength implements InputGuardrail {
     public InputGuardrailResult validate(UserMessage um) {
         String text = um.singleText();
         if (text.length() > 1000) {
-            // a fatal failure, the next InputGuardrail won't be evaluated
+            // A fatal failure: later guardrails won't run and the LLM will not be called
             return fatal("Input too long, size = " + text.length());
         }
         return success();
@@ -89,7 +88,7 @@ public class MaxLength implements InputGuardrail {
         }
         int len = text.codePointCount(0, text.length());
         if (len > maxChars) {
-            // Stop immediately: later guardrails won't run; LLM will not be called
+            // A fatal failure: later guardrails won't run and the LLM will not be called
             return fatal("Input too long (" + len + " > " + maxChars + " characters)");
         }
         return success();

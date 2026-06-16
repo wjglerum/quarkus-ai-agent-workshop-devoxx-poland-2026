@@ -118,7 +118,7 @@ You can obtain one for testing through the Quarkus Dev UI
 
 http://localhost:8081/q/dev-ui/quarkus-oidc/keycloak-provider
 
-![dev-ui-keycloak.png](./../docs/images/dev-ui-keycloak-provider.png)
+![dev-ui-keycloak-provider.png](./../docs/images/dev-ui-keycloak-provider.png)
 
 Sign in with either `alice:alice` or `bob:bob` and copy the access token.
 
@@ -166,7 +166,7 @@ To use it you only need to add the following configuration:
 
 ```properties
 quarkus.langchain4j.mcp.weather.transport-type=http
-quarkus.langchain4j.mcp.weather.url=http://localhost:8081/mcp/sse/
+quarkus.langchain4j.mcp.weather.url=http://localhost:8081/mcp/sse
 ```
 
 And tell the AI agent to use the `weather` tool:
@@ -196,6 +196,11 @@ see https://docs.quarkiverse.io/quarkus-langchain4j/dev/mcp.html#_authorization
 
 Finally, you can run the AI agent and use the `weather` tool.
 Try asking it about the weather in your location.
+
+> [!IMPORTANT]
+> Both applications must be running at the same time.
+> Start the `weather-mcp-server` on port 8081 and the AI agent on port 8080.
+> The agent is an MCP client of the weather server, so the `weather` tool only works when the server is up.
 
 > [!NOTE]
 > You might want to tweak the system message for your AI agent.

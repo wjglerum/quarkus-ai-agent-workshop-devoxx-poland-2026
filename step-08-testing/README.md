@@ -131,6 +131,9 @@ class MaxLengthTest {
 ```
 
 > [!NOTE]
+> The shipped reference test in `src/test/java` asserts a bit more here (it also uses `assertSingleFailureSatisfies(...)` to check the message contents); look at the actual test file for the full version.
+
+> [!NOTE]
 > If your failure message differs, either update the guardrail message or loosen the assertion (e.g., .contains(...)).
 
 ## 4) GuardrailAssertions: handy methods
@@ -144,15 +147,17 @@ import static dev.langchain4j.test.guardrail.GuardrailAssertions.assertThat;
 Common checks you can use:
 
 - `assertThat(result).isSuccessful();`
-- `assertThat(result).isReprompt();`
-- `assertThat(result).hasResult(Result.FATAL);`
+- `assertThat(result).hasFailures();`
+- `assertThat(result).hasResult(GuardrailResult.Result.FATAL);`
+- `assertThat(result).hasSuccessfulText("...");`
 - `assertThat(result).hasSingleFailureWithMessage("...");`
 - `assertThat(result).hasSingleFailureWithMessageAndReprompt("msg", "instruction");`
-- `assertThat(result).hasRepromptInstructionContaining("...");`
 -
 `assertThat(result).assertSingleFailureSatisfies(f -> { ... assertions on f.message(), f.repromptInstruction() ... });`
 
-These work for both **input** and **output** guardrail results.
+The success, failure, and message assertions work for both **input** and **output** guardrail
+results. The reprompt assertion `hasSingleFailureWithMessageAndReprompt(...)` applies only to
+**output** guardrail results, since reprompting is an output-only concept.
 
 ## 5) Patterns for your own tests
 

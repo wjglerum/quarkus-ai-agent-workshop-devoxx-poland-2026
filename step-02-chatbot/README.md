@@ -14,6 +14,9 @@ public interface ChatBot {
 }
 ```
 
+> [!NOTE]
+> We add a `@SystemMessage` to this interface in the System message section below.
+
 This tells Quarkus LangChain4j to register the `ChatBot` interface as an AI service.
 It only has one method that accepts a user message and returns a response.
 
@@ -115,6 +118,8 @@ You can limit the maximum number of tokens the bot can generate  (OpenAI integra
 quarkus.langchain4j.openai.chat-model.max-tokens=10
 ```
 
+This property only takes effect if you have switched the active provider away from the default Ollama, it has no effect on Ollama.
+
 A token doesn't match directly to a word or character, but to a chunk of text, roughly 3 characters.
 
 ### Configuration reference
@@ -122,7 +127,7 @@ A token doesn't match directly to a word or character, but to a chunk of text, r
 For the rest of the workshop you can use the following configuration.
 
 ```properties
-# Configure temperate for all models
+# Configure temperature for all models
 quarkus.langchain4j.temperature=1
 # OpenAI
 quarkus.langchain4j.openai.chat-model.max-tokens=1000

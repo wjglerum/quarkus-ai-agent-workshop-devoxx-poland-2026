@@ -41,6 +41,7 @@ Have a look around and try out the different features.
 
 We haven't implemented any chatbot yet, but you can already use the Dev UI to chat with the language model.
 Navigate to the [chat](http://localhost:8080/q/dev-ui/quarkus-langchain4j-core/chat) and try it out.
+If that link returns a 404, open the Dev UI at [http://localhost:8080/q/dev-ui](http://localhost:8080/q/dev-ui) and find the Chat option under the LangChain4j card.
 You can even set the system message to give instructions to the model.
 Try out some different messages and see how the model responds.
 

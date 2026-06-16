@@ -21,11 +21,17 @@ We will use an endpoint that returns our current public IP address and location.
 You can check it out here:
 http://ip-api.com/
 
+This step needs the REST client extension. The reference module already includes the `quarkus-rest-client-jackson` dependency, so if you are building from scratch make sure to add it.
+
 To integrate it in our application we first have to create a REST client for it:
 
 ```java
+import dev.langchain4j.agent.tool.Tool;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@RegisterRestClient(baseUri = "http://ip-api.com/")
+@RegisterRestClient(baseUri = "http://ip-api.com")
 public interface IPLookupClient {
 
     @GET
@@ -34,6 +40,8 @@ public interface IPLookupClient {
     String getLocation();
 }
 ```
+
+Note that `@Tool` is `dev.langchain4j.agent.tool.Tool`.
 
 The `@RegisterRestClient` annotation tells Quarkus to generate a REST client for us.
 It doesn't need any arguments so we can just create a GET method.
@@ -44,6 +52,9 @@ Give it a good description so that the model can learn what it does.
 Finally, we have to register the tool in our toolbox:
 
 ```java
+import io.quarkiverse.langchain4j.RegisterAiService;
+import io.quarkiverse.langchain4j.ToolBox;
+import jakarta.enterprise.context.SessionScoped;
 
 @SessionScoped
 @RegisterAiService
@@ -53,6 +64,8 @@ public interface ChatBot {
     String chat(String userMessage);
 }
 ```
+
+Note that `@ToolBox` is `io.quarkiverse.langchain4j.ToolBox`.
 
 This is all it takes to connect to an external system!
 Quarkus takes care of the rest.

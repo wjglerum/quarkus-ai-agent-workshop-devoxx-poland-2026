@@ -112,7 +112,7 @@ Boot up the app:
 ```
 
 - Watch logs on startup for ingestion you should see EasyRAG ingesting and chunking the file.
-- Open the _Dev UI_ > _LangChain4j_ > _Embedding store_ and try a search (e.g., "Wi-Fi", "Allowed HTTPS").
+- Open the _Dev UI_ > _LangChain4j_ > _Embedding store_ and try a search (e.g., "coffee in Antwerp", "Markthal", "apple pie").
 - Ask your bot:
     - “What are good restaurants in Rotterdam?” — It should answer and cite the guide (e.g., “Fenix Food Factory”).
     - “Give me a recommendation for a coffee place in Antwerp” — (e.g., “Normo”).
@@ -127,7 +127,12 @@ Unfortunately, smaller models are not great at following such instructions, espe
 longer,
 which is the case with RAG.
 
-> [!NOTE] Model choice will affect the quality of the answers. If you use a small model (e.g., `qwen3.5:0.8b`), the bot
+> [!TIP]
+> For a better "it answered from my own docs" experience in this step, pull a larger Qwen3.5 tag such as `qwen3.5:2b` or
+> `qwen3.5:4b`. The default small `qwen3.5:0.8b` may not reliably follow the RAG instructions.
+
+> [!NOTE]
+> Model choice will affect the quality of the answers. If you use a small model (e.g., `qwen3.5:0.8b`), the bot
 > may not be able to answer all questions correctly. For better results, consider a larger Qwen3.5 tag (e.g. `qwen3.5:2b`
 > or `qwen3.5:4b`) or a more capable model like `gpt-4o` from OpenAI.
 

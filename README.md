@@ -39,6 +39,17 @@ First clone the repository and run the build:
 ./mvnw install -DskipTests
 ```
 
+### Smoke test your setup
+
+Before starting the steps, verify your setup works end to end:
+
+```shell
+cd step-02-chatbot && ../mvnw quarkus:dev
+```
+
+Open [http://localhost:8080](http://localhost:8080) and send a message to the chatbot to confirm the model and setup work.
+The very first model download via Ollama (`qwen3.5:0.8b`, about 1 GB) is the one slow gate, so let it finish before you continue.
+
 ## Enable LLM
 
 To run this workshop you need access to an LLM.
@@ -149,6 +160,23 @@ This is your **personal workspace** — all your code for the workshop will live
 - [Bonus 1 - Observability](step-bonus-01-observability/README.md)
 - [Bonus 2 - Hexagonal Architecture](step-bonus-02-hexagonal-architecture/README.md)
 - [Bonus 3 - Your own use case!](step-bonus-03-use-case/README.md)
+
+### You are here
+
+The numbered step folders are **cumulative**: each one contains the full reference solution up to and including that topic.
+So if you want the reference for a feature, open the folder named after that feature, not the next one.
+
+| Folder | Contains |
+| --- | --- |
+| `step-02-chatbot` | chatbot |
+| `step-03-authentication` | chatbot + auth |
+| `step-04-tools` | + tools |
+| `step-05-mcp-server` | + MCP client |
+| `step-06-rag` | + RAG |
+| `step-07-guardrails` | + guardrails |
+| `step-08-testing` | + tests |
+
+The three `step-bonus-*` folders are documentation only (links, no code).
 
 ### Further reading
 
