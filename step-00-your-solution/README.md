@@ -6,7 +6,7 @@ Welcome! This is **your personal workspace** for the workshop.
 
 Each numbered step in the repository (`step-01-introduction`, `step-02-chatbot`, and so on) has its own README with explanations, hints, and a finished reference implementation. You read the instructions there, but you apply the changes here in `step-00-your-solution`.
 
-This module starts almost empty on purpose. It has the Maven setup, the LLM provider configuration, and an empty `ChatBot` placeholder that you complete in step 2.
+This module starts almost empty on purpose. It has the Maven setup and the LLM provider configuration, but no application code yet. You create your first class, the `ChatBot`, in step 2.
 
 ## What to do
 
@@ -21,7 +21,7 @@ The steps are cumulative: each one builds on the previous, so keep working in th
 | Step | What you add here | Instructions |
 | ---- | ----------------- | ------------ |
 | 1. Introduction | Nothing to code yet. Explore the Dev UI and chat with the model | [step-01](../step-01-introduction/README.md) |
-| 2. Chatbot | Complete the `ChatBot` AI service and add the WebSocket chat UI | [step-02](../step-02-chatbot/README.md) |
+| 2. Chatbot | Create the `ChatBot` AI service and add the WebSocket chat UI | [step-02](../step-02-chatbot/README.md) |
 | 3. Authentication | Protect the app with OIDC and log in | [step-03](../step-03-authentication/README.md) |
 | 4. Tools | Give the model a tool, an IP based location lookup | [step-04](../step-04-tools/README.md) |
 | 5. MCP | Connect to the weather MCP server | [step-05](../step-05-mcp-server/README.md) |
