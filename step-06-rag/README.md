@@ -15,8 +15,8 @@ The bot should rely on this guide. If relevant info is missing, it should say so
 
 In this step, we’ll implement:
 
-1. **Ingestion** – split the doc, embed its content, store the content.
-2. **Augmentation** – retrieve relevant chunks and inject them into the prompt.
+1. **Ingestion**: split the doc, embed its content, store the content.
+2. **Augmentation**: retrieve relevant chunks and inject them into the prompt.
 
 ---
 
@@ -119,8 +119,8 @@ Boot up the app:
 - Watch logs on startup for ingestion you should see EasyRAG ingesting and chunking the file.
 - Open the _Dev UI_ > _LangChain4j_ > _Embedding store_ and try a search (e.g., "coffee in Antwerp", "Markthal", "apple pie").
 - Ask your bot:
-    - “What are good restaurants in Rotterdam?” — It should answer and cite the guide (e.g., “Fenix Food Factory”).
-    - “Give me a recommendation for a coffee place in Antwerp” — (e.g., “Normo”).
+    - “What are good restaurants in Rotterdam?” It should answer and cite the guide (e.g., “Fenix Food Factory”).
+    - “Give me a recommendation for a coffee place in Antwerp” (e.g., “Normo”).
 
 Here is an example of how a model reply might look like:
 

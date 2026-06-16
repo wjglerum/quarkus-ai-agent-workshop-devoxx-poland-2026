@@ -146,8 +146,8 @@ For a cheaper, faster option you can switch the model to `claude-haiku-4-5` in t
 
 ## Getting started
 
-Before diving in, open the **[Step 0 – Your Workspace](./step-00-your-solution/README.md)** folder.  
-This is your **personal workspace** — all your code for the workshop will live there.
+Before diving in, open the **[Step 0 - Your Workspace](./step-00-your-solution/README.md)** folder.  
+This is your **personal workspace**. All your code for the workshop will live there.
 
 - [Step 1 - Introduction](./step-01-introduction/README.md)
 - [Step 2 - Chatbot](./step-02-chatbot/README.md)

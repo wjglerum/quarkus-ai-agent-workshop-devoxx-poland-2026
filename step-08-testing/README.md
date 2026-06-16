@@ -35,7 +35,7 @@ Files under test
 - `AllowedLocationsGuardrail.java`
 - Config key: `guardrails.locations.allowed` (comma-separated allowed names)
 
-Test file — `src/test/java/org/acme/guardrails/AllowedLocationsGuardrailTest.java`
+Test file: `src/test/java/org/acme/guardrails/AllowedLocationsGuardrailTest.java`
 
 ```java
 package org.acme.guardrails;
@@ -81,7 +81,7 @@ Files under test
 - `MaxLength.java`
 - Config key: `guardrails.max-input-chars` (default 1000)
 
-Test file — `src/test/java/org/acme/guardrails/MaxLengthTest.java`
+Test file: `src/test/java/org/acme/guardrails/MaxLengthTest.java`
 
 ```java
 package org.acme.guardrails;
