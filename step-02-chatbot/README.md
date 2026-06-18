@@ -120,7 +120,7 @@ You can limit the maximum number of tokens the bot can generate  (OpenAI integra
 
 ```properties
 # OpenAI
-quarkus.langchain4j.openai.chat-model.max-tokens=10
+quarkus.langchain4j.openai.chat-model.max-completion-tokens=10
 ```
 
 This property only takes effect if you have switched the active provider away from the default Ollama, it has no effect on Ollama.
@@ -135,7 +135,7 @@ For the rest of the workshop you can use the following configuration.
 # Configure temperature for all models
 quarkus.langchain4j.temperature=1
 # OpenAI
-quarkus.langchain4j.openai.chat-model.max-tokens=1000
+quarkus.langchain4j.openai.chat-model.max-completion-tokens=1000
 ```
 
 ## System message
