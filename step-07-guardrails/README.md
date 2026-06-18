@@ -103,6 +103,44 @@ public class MaxLength implements InputGuardrail {
 
 Optional config (in `application.properties`): `guardrails.max-input-chars=1000`
 
+### A subtlety once RAG is in play: guardrails see the augmented prompt
+
+There is a catch that only shows up because step 6 added RAG. Start the app, open the chat widget and ask a short question like "What can we do in Krakow?". The guardrail rejects it:
+
+```
+Input too long (1181 > 1000 characters)
+```
+
+Your message was around 25 characters, so what happened? Input guardrails run *after* the retrieval augmentor has done its work. By the time `validate` is called, the `UserMessage` is no longer what the user typed, it is the question plus every retrieved City Guide segment that EasyRAG stitched into the prompt. The naive `validate(UserMessage)` above is therefore measuring the whole augmented prompt, not the user input.
+
+You can confirm the ordering from the guardrail API itself: `InputGuardrailRequest.requestParams()` already carries an `augmentationResult()`, so augmentation has clearly happened before the guardrail runs.
+
+To measure what the user actually typed, expose the raw input as a template variable and read it back in the guardrail. First give `chat` an explicit user-message template so the raw argument is published under the name `userMessage`:
+
+```java
+@UserMessage("{userMessage}")
+@InputGuardrails({ MaxLength.class, PromptInjectionGuard.class })
+String chat(String userMessage);
+```
+
+Then override the request-aware `validate` method, which can see the template variables, and fall back to the plain message only when no variable is present (so the simple `validate(UserMessage)` still works for unit tests):
+
+```java
+@Override
+public InputGuardrailResult validate(InputGuardrailRequest request) {
+    Object raw = request.requestParams().variables().get("userMessage");
+    if (raw != null) {
+        return validate(UserMessage.from(raw.toString()));
+    }
+    return validate(request.userMessage());
+}
+```
+
+Add the import `dev.langchain4j.guardrail.InputGuardrailRequest` to `MaxLength`, and `dev.langchain4j.service.UserMessage` to `ChatBot`. Now the short Krakow question passes, while a genuinely long user message is still rejected with the real character count.
+
+> [!NOTE]
+> This only matters because the guardrail is meant to bound *user input*. A guardrail that is supposed to cap the entire prompt (a context-window budget, for example) would correctly keep measuring the augmented message.
+
 ### 2) Register the input guardrail on our AI service
 
 To register the input guardrail, we need to modify our AI service by adding `@InputGuardrails({ MaxLength.class })` to our `ChatBot` class's `chat` method.
