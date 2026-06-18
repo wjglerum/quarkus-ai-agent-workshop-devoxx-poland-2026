@@ -10,7 +10,7 @@ questions **grounded on those docs**. For this workshop, we’ll use a playful r
 
 > `src/main/resources/rag/city-guide.txt`
 
-It contains a guide on places to visit in Rotterdam and Antwerp!
+It contains a guide on places to visit in Krakow!
 The bot should rely on this guide. If relevant info is missing, it should say so.
 
 In this step, we’ll implement:
@@ -98,13 +98,13 @@ These are most commonly used formats that are supported: `.txt`, `.md`, `.pdf`, 
 
 ### 4) Update bot system message
 
-To make the bot more aware, let's add "You use provided information to you about Antwerp and Rotterdam." to the system message.
+To make the bot more aware, let's add "You use provided information to you about Krakow." to the system message.
 
 ```
 @SystemMessage("""
                 You are a helpful bot that helps users with recommendations about their location.
                 You can get their location and extract the latitude and longitude.
-                You use provided information to you about Antwerp and Rotterdam.
+                You use provided information to you about Krakow.
             """)
 ```
 
@@ -117,10 +117,10 @@ Boot up the app:
 ```
 
 - Watch logs on startup for ingestion you should see EasyRAG ingesting and chunking the file.
-- Open the _Dev UI_ > _LangChain4j_ > _Embedding store_ and try a search (e.g., "coffee in Antwerp", "Markthal", "apple pie").
+- Open the _Dev UI_ > _LangChain4j_ > _Embedding store_ and try a search (e.g., "beer in Krakow", "Hala Forum", "pierogi").
 - Ask your bot:
-    - “What are good restaurants in Rotterdam?” It should answer and cite the guide (e.g., “Fenix Food Factory”).
-    - “Give me a recommendation for a coffee place in Antwerp” (e.g., “Normo”).
+    - “What are good restaurants in Krakow?” It should answer and cite the guide (e.g., “Bar Mleczny Tomasza”).
+    - “Give me a recommendation for a beer bar in Krakow” (e.g., “Multi Qulti”).
 
 Here is an example of how a model reply might look like:
 

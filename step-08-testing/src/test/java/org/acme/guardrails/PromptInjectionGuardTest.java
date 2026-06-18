@@ -16,7 +16,7 @@ class PromptInjectionGuardTest {
 
     @Test
     void cleanInput_isSuccessful() {
-        assertThat(newGuard().validate(UserMessage.from("What is a good coffee spot in Antwerp?")))
+        assertThat(newGuard().validate(UserMessage.from("What is a good beer spot in Krakow?")))
                 .isSuccessful();
     }
 

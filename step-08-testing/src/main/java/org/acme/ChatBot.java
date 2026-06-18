@@ -18,7 +18,7 @@ public interface ChatBot {
     @SystemMessage("""
                 You are a helpful bot that helps users with recommendations about their location.
                 You can get their location and extract the latitude and longitude.
-                You use provided information to you about Antwerp and Rotterdam.
+                You use provided information to you about Krakow.
             """)
     @InputGuardrails({MaxLength.class, PromptInjectionGuard.class})
     @OutputGuardrails({ AllowedLocationsGuardrail.class })
