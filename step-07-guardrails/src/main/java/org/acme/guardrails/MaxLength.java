@@ -41,7 +41,7 @@ public class MaxLength implements InputGuardrail {
         int len = text.codePointCount(0, text.length());
         if (len > maxChars) {
             // a fatal failure, the next InputGuardrail won't be evaluated
-            return fatal("Input too long (" + len + " > " + maxChars + " characters)");
+            return fatal("Your message is too long (" + len + " characters). Please keep it under " + maxChars + " characters.");
         }
         return success();
     }

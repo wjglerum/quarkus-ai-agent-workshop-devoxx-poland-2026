@@ -30,7 +30,7 @@ public class PromptInjectionGuard implements InputGuardrail {
             String phrase = raw.trim().toLowerCase();
             if (!phrase.isEmpty() && lower.contains(phrase)) {
                 // A fatal failure: later guardrails won't run and the LLM will not be called
-                return fatal("Potential prompt injection detected: \"" + phrase + "\"");
+                return fatal("Your message contains a restricted phrase and cannot be processed.");
             }
         }
         return success();

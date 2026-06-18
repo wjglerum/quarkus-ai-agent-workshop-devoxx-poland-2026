@@ -32,7 +32,7 @@ class MaxLengthTest {
                 .hasResult(GuardrailResult.Result.FATAL)
                 .assertSingleFailureSatisfies(f ->
                         org.assertj.core.api.Assertions.assertThat(f.message())
-                                .contains("Input too long")
+                                .contains("too long")
                                 .contains("1001")
                                 .contains("1000")
                 );
@@ -51,7 +51,7 @@ class MaxLengthTest {
                 .hasResult(GuardrailResult.Result.FATAL)
                 .assertSingleFailureSatisfies(f ->
                         org.assertj.core.api.Assertions.assertThat(f.message())
-                                .contains("Input too long")
+                                .contains("too long")
                                 .contains("4")
                                 .contains("3")
                 );
@@ -86,7 +86,7 @@ class MaxLengthTest {
                 .hasResult(GuardrailResult.Result.FATAL)
                 .assertSingleFailureSatisfies(f ->
                         org.assertj.core.api.Assertions.assertThat(f.message())
-                                .contains("Input too long")
+                                .contains("too long")
                                 .contains("1001")
                                 .contains("1000")
                 );

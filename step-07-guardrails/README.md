@@ -94,7 +94,7 @@ public class MaxLength implements InputGuardrail {
         int len = text.codePointCount(0, text.length());
         if (len > maxChars) {
             // A fatal failure: later guardrails won't run and the LLM will not be called
-            return fatal("Input too long (" + len + " > " + maxChars + " characters)");
+            return fatal("Your message is too long (" + len + " characters). Please keep it under " + maxChars + " characters.");
         }
         return success();
     }
@@ -108,7 +108,7 @@ Optional config (in `application.properties`): `guardrails.max-input-chars=1000`
 There is a catch that only shows up because step 6 added RAG. Start the app, open the chat widget and ask a short question like "What can we do in Krakow?". The guardrail rejects it:
 
 ```
-Input too long (1181 > 1000 characters)
+Your message is too long (1181 characters). Please keep it under 1000 characters.
 ```
 
 Your message was around 25 characters, so what happened? Input guardrails run *after* the retrieval augmentor has done its work. By the time `validate` is called, the `UserMessage` is no longer what the user typed, it is the question plus every retrieved City Guide segment that EasyRAG stitched into the prompt. The naive `validate(UserMessage)` above is therefore measuring the whole augmented prompt, not the user input.
@@ -179,7 +179,7 @@ public class PromptInjectionGuard implements InputGuardrail {
             String phrase = raw.trim().toLowerCase();
             if (!phrase.isEmpty() && lower.contains(phrase)) {
                 // A fatal failure: later guardrails won't run and the LLM will not be called
-                return fatal("Potential prompt injection detected: \"" + phrase + "\"");
+                return fatal("Your message contains a restricted phrase and cannot be processed.");
             }
         }
         return success();
@@ -255,6 +255,27 @@ public class AllowedLocationsGuardrail implements OutputGuardrail {
 
 
 Let's wire the `AllowedLocationsGuardrail` to our `ChatBot` class by adding `@OutputGuardrails({ AllowedLocationsGuardrail.class })` to the `chat` method.
+
+## Handling guardrail failures in the chat endpoint
+
+When a guardrail calls `fatal()`, LangChain4j throws a `GuardrailException` (subclasses: `InputGuardrailException`, `OutputGuardrailException`). Without explicit handling, this propagates as an unhandled error and the user sees nothing useful.
+
+Catch it in `ChatBotWebSocket` and return the exception message directly so the user sees the guardrail's rejection reason:
+
+```java
+import dev.langchain4j.guardrail.GuardrailException;
+
+@OnTextMessage
+public String onTextMessage(String message) {
+    try {
+        return chatBot.chat(message);
+    } catch (GuardrailException e) {
+        return e.getMessage();
+    }
+}
+```
+
+With this in place, sending a message that exceeds the character limit returns a message like `Your message is too long (1200 characters). Please keep it under 1000 characters.` in the chat widget instead of a silent error.
 
 ## Next step
 

@@ -34,6 +34,6 @@ class PromptInjectionGuardTest {
                 .hasResult(GuardrailResult.Result.FATAL)
                 .assertSingleFailureSatisfies(f ->
                         org.assertj.core.api.Assertions.assertThat(f.message())
-                                .contains("prompt injection"));
+                                .contains("restricted phrase"));
     }
 }
