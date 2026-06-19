@@ -29,6 +29,18 @@ The steps are cumulative: each one builds on the previous, so keep working in th
 | 7. Guardrails | Add input and output guardrails | [step-07](../step-07-guardrails/README.md) |
 | 8. Testing | Test your guardrails | [step-08](../step-08-testing/README.md) |
 
+## Slow model? Increase the timeout
+
+Local models can be slow, and the default Ollama timeout is only `10s`. To avoid timeout errors this project raises it in [application.properties](src/main/resources/application.properties):
+
+```properties
+# Set larger timeout for local language models
+quarkus.langchain4j.timeout=1m
+quarkus.langchain4j.ollama.timeout=1m
+```
+
+`quarkus.langchain4j.ollama.timeout` is the Ollama specific override that is guaranteed to apply. Raise it (for example `2m`) if a minute is not enough. See [step-01](../step-01-introduction/README.md) for more detail.
+
 ## See only what a step adds
 
 Because every step folder is the full solution up to that point, you can see exactly what a step introduces by comparing it with the previous step. For example, to see what step 4 adds on top of step 3, run this from the repository root:

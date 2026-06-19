@@ -176,6 +176,17 @@ For running Ollama you have two options:
 For the details of the configuration please refer to
 the [documentation](https://docs.quarkiverse.io/quarkus-langchain4j/dev/guide-ollama.html).
 
+> [!IMPORTANT]
+> Local models can be slow, and the default Ollama timeout is only `10s` (see [quarkiverse/quarkus-langchain4j#398](https://github.com/quarkiverse/quarkus-langchain4j/issues/398)). To avoid timeout errors this project raises it in [application.properties](src/main/resources/application.properties):
+>
+> ```properties
+> # Set larger timeout for local language models
+> quarkus.langchain4j.timeout=1m
+> quarkus.langchain4j.ollama.timeout=1m
+> ```
+>
+> `quarkus.langchain4j.timeout` is the global default; `quarkus.langchain4j.ollama.timeout` is the Ollama specific override that is guaranteed to apply. Raise it further (for example `2m`) if a minute is not enough.
+
 ### Quarkus LangChain4j Gemini
 
 To use Gemini with Quarkus you have to add the following dependency to your project:
