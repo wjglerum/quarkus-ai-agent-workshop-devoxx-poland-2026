@@ -44,10 +44,10 @@ First clone the repository and run the build:
 Before starting the steps, verify your setup works end to end:
 
 ```shell
-cd step-02-chatbot && ../mvnw quarkus:dev
+cd step-00-your-solution && ../mvnw quarkus:dev
 ```
 
-Open [http://localhost:8080](http://localhost:8080) and send a message to the chatbot to confirm the model and setup work.
+Open [http://localhost:8080](http://localhost:8080) and check if the app is running.
 The very first model download via Ollama (`qwen3.5:0.8b`, about 1 GB) is the one slow gate, so let it finish before you continue.
 
 ## Enable LLM
